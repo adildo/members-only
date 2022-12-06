@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  if user
+    a(href="/new-msg") Create new message
+  else
+    p Only users can create messages - log in or sign up 
+  if error
+    p= error
+  ul
+    for post in posts 
+      li.bg-secondary.rounded.p-4.m-2
+        p <strong>Title:</strong> #{post.title}
+        p <strong>Message:</strong> #{post.text}
+        if user
+          if !user.member 
+            p <strong>Created By:</strong> Unknown - log in to see 
+            p <strong>Date Created:</strong> Unknown - log in to see
+          if user.member
+            p <strong>Create By:</strong> #{post.createdBy.username}
+            p <strong>Date Created:</strong> #{post.created}
+          if user.admin
+            form(action="/" method='POST')
+              input#delPost.form-control(type='hidden', value= post._id, name='delPost')
+              button.btn.btn-danger(type= 'submit') Delete post
+        else
+          p <strong>Created By:</strong> Unknown - log in to see 
+          p <strong>Date Created:</strong> Unknown - log in to see
+    

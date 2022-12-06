@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 #{title}
+    if user
+        p #{user.username}, in order to join the club you'lll need to know the secret code!
+    form(action='/join-club' method='POST')
+        .form-group
+            label(for='secret') Secret Passcode
+            input#username.form-control.username(type='number' name='passcode' placeholder='Enter passcode to join (666)')
+        button.btn.btn-primary(type='submit') submit
+    if errors
+            ul
+                each error in errors
+                    li.text-danger= error.msg
+            
+

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1 #{title}
+    p Already a member? 
+        a(href='/sign-in') Log in
+    form(action='/sign-up' method='POST')
+        .form-group
+            label(for='username') Choose username
+            input#username.form-control(type='text' placeholder='Enter username' name='username')
+        .form-group
+            label(for='password') Password
+            input#password.form-control(type='password' placeholder='Enter Password' name='password')
+        .form-group
+            label(for='confPassword') Confirm password
+            input#confPassword.form-control(type='password' placeholder=' Confirm Password' name='confPassword')
+        button.btn.btn-primary(type='submit') Register
+    if error
+        P.text-danger #{error}
+    if errors
+            ul
+                each error in errors
+                    li.text-danger= error.msg

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(action='/new-msg' method='POST')
+        .form-group
+            label(for='title') Title
+            input#title.form-control(type='text' placeholder='Enter Title' name='title')
+        .form-group
+            label(for='message') Message
+            input#message.form-control(type='text' placeholder='Enter your message' name='message')
+        button.btn.btn-primary(type='submit') Submit message
+    if errors
+            ul
+                each error in errors
+                    li.text-danger= error.msg
+    

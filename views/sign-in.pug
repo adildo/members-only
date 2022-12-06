@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 #{title}
+    if user
+        p= user
+    form(action='/sign-in' method='POST')
+        .form-group
+            label(for='username') Username
+            input#username.form-control.username(type='text' name='username' placeholder='Enter username')
+        .form-group
+            label(for='password') Password
+            input#password.form-control(type='password' name='password' placeholder='Enter Password')
+        button.btn.btn-primary(type='submit') Log in
+

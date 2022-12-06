@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 #{title}
+    if user
+        p #{user.username}, in order to become an admin you'll need to know the secret code!
+    form(action='/become-admin' method='POST')
+        .form-group
+            label(for='adminPass') Secret Passcode
+            input#adminPass.form-control.adminPass(type='number' name='passcode' placeholder='Enter passcode')
+        button.btn.btn-primary(type='submit') submit
+    if errors
+            ul
+                each error in errors
+                    li.text-danger= error.msg
+            
+
